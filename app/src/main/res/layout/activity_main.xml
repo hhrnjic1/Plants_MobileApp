@@ -11,18 +11,19 @@
         android:id="@+id/biljkeRV"
         android:layout_width="400dp"
         android:layout_height="650dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.454"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/modSpinner"
         tools:ignore="MissingConstraints" />
 
     <Spinner
         android:id="@+id/modSpinner"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/biljkeRV"
-        app:layout_constraintEnd_toStartOf="@+id/resetBtn"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="16dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
@@ -31,9 +32,10 @@
         android:id="@+id/resetBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
         android:text="Reset"
-        app:layout_constraintBottom_toTopOf="@+id/biljkeRV"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.739"
         app:layout_constraintStart_toEndOf="@+id/modSpinner"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
