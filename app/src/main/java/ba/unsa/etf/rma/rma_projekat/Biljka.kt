@@ -3,7 +3,7 @@ package ba.unsa.etf.rma.rma_projekat
 class Biljka {
     lateinit var naziv :String
     lateinit var porodica :String
-    lateinit var medicinksoUpozorenje :String
+    lateinit var medicinskoUpozorenje :String
     lateinit var medicinskeKoristi :List<MedicinskaKorist>
     lateinit var profilOkusa :ProfilOkusaBiljke
     lateinit var jela :List<String>
@@ -22,7 +22,7 @@ class Biljka {
     ) {
         this.naziv = naziv
         this.porodica = porodica
-        this.medicinksoUpozorenje = medicinksoUpozorenje
+        this.medicinskoUpozorenje = medicinksoUpozorenje
         this.medicinskeKoristi = medicinskeKoristi
         this.profilOkusa = profilOkusa
         this.jela = jela

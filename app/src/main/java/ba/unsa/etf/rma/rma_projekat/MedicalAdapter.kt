@@ -21,7 +21,7 @@ class MedicalAdapter(private var biljke: ArrayList<Biljka>) :RecyclerView.Adapte
         val viewHolderMedical = holder as MedicalModViewHolder
 
         viewHolderMedical.biljkaNaziv.text = biljke[position].naziv;
-        viewHolderMedical.biljkaUpozorenje.text = biljke[position].medicinksoUpozorenje
+        viewHolderMedical.biljkaUpozorenje.text = biljke[position].medicinskoUpozorenje
 
         val koristi = biljke[position].medicinskeKoristi
         viewHolderMedical.biljkaKorist1.text = koristi.getOrNull(0)?.opis ?: ""
