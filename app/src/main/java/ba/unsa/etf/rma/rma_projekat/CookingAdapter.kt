@@ -18,8 +18,8 @@ class CookingAdapter(private var biljke :ArrayList<Biljka>) : RecyclerView.Adapt
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val viewHolderCooking = holder as CookingModViewHolder
         viewHolderCooking.biljkaNaziv.text = biljke[position].naziv
-        viewHolderCooking.biljkaOkus.text = biljke[position].profilOkusa.name
-        viewHolderCooking.biljkaJelo1.text = biljke[position].jela[0]
+        viewHolderCooking.biljkaOkus.text = biljke[position].profilOkusa.opis
+
 
         val jela = biljke[position].jela
         viewHolderCooking.biljkaJelo1.text = jela.getOrNull(0)?.toString() ?: ""

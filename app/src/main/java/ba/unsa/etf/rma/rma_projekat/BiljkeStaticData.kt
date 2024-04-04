@@ -2,7 +2,7 @@ package ba.unsa.etf.rma.rma_projekat
 
 fun getBiljke(): List<Biljka> {
     return listOf(
-        Biljka("Bosiljak(Ocimum basilicum)","Lamiaceae (usnate)","Može iritati kožu osjetljivu na sunce. Preporučuje se oprezna upotreba pri korištenju ulja bosiljka.",
+        Biljka("Bosiljak (Ocimum basilicum)","Lamiaceae (usnate)","Može iritati kožu osjetljivu na sunce. Preporučuje se oprezna upotreba pri korištenju ulja bosiljka.",
             listOf(MedicinskaKorist.SMIRENJE, MedicinskaKorist.REGULACIJAPROBAVE), ProfilOkusaBiljke.BEZUKUSNO,listOf("Salata od paradajza", "Punjene tikvice"),
             listOf(KlimatskiTip.SREDOZEMNA, KlimatskiTip.SUBTROPSKA),listOf(Zemljiste.PJESKOVITO, Zemljiste.ILOVACA)),
 

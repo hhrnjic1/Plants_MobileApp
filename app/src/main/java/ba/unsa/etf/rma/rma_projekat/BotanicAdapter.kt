@@ -20,8 +20,8 @@ class BotanicAdapter(private var biljke :ArrayList<Biljka>) : RecyclerView.Adapt
         val viewHolderBotanic = holder as BotanicModViewHolder
         viewHolderBotanic.biljkaNaziv.text = biljke[position].naziv
         viewHolderBotanic.biljkaPorodica.text = biljke[position].porodica
-        viewHolderBotanic.biljkaKlima.text = biljke[position].klimatskiTipovi[0].name
-        viewHolderBotanic.biljkaZemljiste.text = biljke[position].zemljisniTipovi[0].name
+        viewHolderBotanic.biljkaKlima.text = biljke[position].klimatskiTipovi[0].opis
+        viewHolderBotanic.biljkaZemljiste.text = biljke[position].zemljisniTipovi[0].naziv
 
         val context: Context = viewHolderBotanic.biljkaImage.context
         var id: Int =
