@@ -16,7 +16,7 @@ fun getBiljke(): List<Biljka> {
 
         Biljka("Ružmarin (Rosmarinus officinalis)","Lamiaceae (metvice)","Treba ga koristiti umjereno i konsultovati se sa ljekarom pri dugotrajnoj upotrebi ili upotrebi u većim količinama.",
             listOf(MedicinskaKorist.PROTUUPALNO, MedicinskaKorist.REGULACIJAPRITISKA), ProfilOkusaBiljke.AROMATICNO,listOf("Pečeno pile", "Grah","Gulaš"),
-            listOf(KlimatskiTip.SREDOZEMNA, KlimatskiTip.SUHA),listOf(Zemljiste.SLJUNKOVITO, Zemljiste.KRECNJACKO)),
+            listOf(KlimatskiTip.SREDOZEMNA, KlimatskiTip.SUHA),listOf(Zemljiste.SLJUNOVITO, Zemljiste.KRECNJACKO)),
 
         Biljka("Lavanda (Lavandula angustifolia)","Lamiaceae (metvice)","Nije preporučljivo za trudnice, dojilje i djecu mlađu od 3 godine. Također, treba izbjegavati kontakt lavanda ulja sa očima.",
             listOf(MedicinskaKorist.SMIRENJE, MedicinskaKorist.PODRSKAIMUNITETU),  ProfilOkusaBiljke.AROMATICNO,listOf("Jogurt sa voćem"),
