@@ -1,5 +1,7 @@
 package ba.unsa.etf.rma.rma_projekat
 
+
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
@@ -20,6 +22,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var spinner: Spinner
     private lateinit var  resetButton: Button
     private lateinit var currentAdapter: RecyclerView.Adapter<*>
+    private lateinit var novaBiljkaBtn: Button
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -56,6 +59,13 @@ class MainActivity : AppCompatActivity() {
             napuniListu(sveBiljkeList)
             recyclerView.adapter = currentAdapter
         }
+
+        novaBiljkaBtn = findViewById(R.id.novaBiljkaBtn)
+        novaBiljkaBtn.setOnClickListener{
+            val intent = Intent(this, NovaBiljkaActivity::class.java)
+            startActivity(intent)
+        }
+
     }
 
     private fun setAdapterBasedOnSpinnerPosition(position: Int){
