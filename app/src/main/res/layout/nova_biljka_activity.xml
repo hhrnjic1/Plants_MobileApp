@@ -1,82 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:fillViewport="true">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="1dp">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
 
-        <LinearLayout
-            android:layout_width="192dp"
-            android:layout_height="match_parent"
-            android:layout_margin="10dp"
-            android:orientation="vertical" >
+        <EditText
+            android:id="@+id/nazivET"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Naziv"
+            android:inputType="text"/>
 
-            <ImageView
-                android:id="@+id/slikaIV"
-                android:layout_width="match_parent"
-                android:layout_height="192dp"
-                tools:srcCompat="@tools:sample/avatars" />
+        <EditText
+            android:id="@+id/porodicaET"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Porodica"
+            android:inputType="text"/>
 
-            <ListView
-                android:layout_width="match_parent"
-                android:layout_height="192dp"
-                android:choiceMode="multipleChoiceModal" />
+        <EditText
+            android:id="@+id/medicinskoUpozorenjeET"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Medicinsko upozorenje"
+            android:inputType="text"/>
 
-            <ListView
-                android:id="@+id/profilOkusaLV"
-                android:layout_width="match_parent"
-                android:layout_height="192dp" />
-        </LinearLayout>
+        <EditText
+            android:id="@+id/jeloET"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Jelo"
+            android:inputType="text"/>
 
-        <LinearLayout
-            android:layout_width="177dp"
-            android:layout_height="match_parent"
-            android:layout_margin="10dp"
-            android:orientation="vertical">
+        <ListView
+            android:id="@+id/medicinskaKoristLV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:choiceMode="multipleChoice"/>
 
-            <EditText
-                android:id="@+id/nazivET"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="text"
-                android:text="Naziv" />
+        <ListView
+            android:id="@+id/klimatskiTipLV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:choiceMode="multipleChoice"/>
 
-            <EditText
-                android:id="@+id/porodicaET"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="text"
-                android:text="Porodica" />
+        <ListView
+            android:id="@+id/zemljisniTipLV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:choiceMode="multipleChoice"/>
 
-            <EditText
-                android:id="@+id/medicinskoUpozorenjeET"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="text"
-                android:text="MedUpozorenje" />
+        <ListView
+            android:id="@+id/profilOkusaLV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:choiceMode="singleChoice"/>
 
-            <EditText
-                android:id="@+id/jeloET"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="text"
-                android:text="Jelo" />
+        <ListView
+            android:id="@+id/jelaLV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
 
-            <ListView
-                android:id="@+id/jelaLV"
-                android:layout_width="match_parent"
-                android:layout_height="192dp" />
-        </LinearLayout>
+        <Button
+            android:id="@+id/dodajJeloBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Dodaj jelo"/>
+
+        <Button
+            android:id="@+id/dodajBiljkuBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Dodaj biljku"/>
+
+        <Button
+            android:id="@+id/uslikajBiljkuBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Uslikaj biljku"/>
+
+        <ImageView
+            android:id="@+id/slikaIV"
+            android:layout_width="wrap_content"
+            android:layout_height="200dp"
+            android:contentDescription="@string/app_name"/>
+
     </LinearLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
