@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true">
@@ -41,31 +41,56 @@
         <ListView
             android:id="@+id/medicinskaKoristLV"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:choiceMode="multipleChoice"/>
+            android:layout_height="192dp"
+            android:choiceMode="multipleChoice" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="4dp"
+            android:background="@android:color/darker_gray" />
 
         <ListView
             android:id="@+id/klimatskiTipLV"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:choiceMode="multipleChoice"/>
+            android:layout_height="192dp"
+            android:choiceMode="multipleChoice" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="4dp"
+            android:background="@android:color/darker_gray" />
 
         <ListView
             android:id="@+id/zemljisniTipLV"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:choiceMode="multipleChoice"/>
+            android:layout_height="192dp"
+            android:choiceMode="multipleChoice" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="4dp"
+            android:background="@android:color/darker_gray" />
 
         <ListView
             android:id="@+id/profilOkusaLV"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:choiceMode="singleChoice"/>
+            android:layout_height="192dp"
+            android:choiceMode="singleChoice" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="4dp"
+            android:background="@android:color/darker_gray" />
 
         <ListView
             android:id="@+id/jelaLV"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="192dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="4dp"
+            android:background="@android:color/darker_gray" />
 
         <Button
             android:id="@+id/dodajJeloBtn"
@@ -92,4 +117,4 @@
             android:contentDescription="@string/app_name"/>
 
     </LinearLayout>
-</ScrollView>
+</androidx.core.widget.NestedScrollView>

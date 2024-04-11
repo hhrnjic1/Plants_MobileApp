@@ -31,6 +31,7 @@ class NovaBiljkaActivity : AppCompatActivity() {
 
         initUI()
         setupListeners()
+        populateListViews()
 
         val jelaList = ArrayList<String>()
         val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, jelaList)
@@ -86,6 +87,24 @@ class NovaBiljkaActivity : AppCompatActivity() {
                 trenutnoIzabranoJelo = -1
             }
         }
+    }
+
+    private fun populateListViews() {
+        val medicinskaKoristValues = MedicinskaKorist.entries.map { it.name }
+        val klimatskiTipValues = KlimatskiTip.entries.map { it.name }
+        val zemljisniTipValues = Zemljiste.entries.map { it.name }
+
+        val medicinskaKoristAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_multiple_choice, medicinskaKoristValues)
+        medicinskaKoristLV.choiceMode = ListView.CHOICE_MODE_MULTIPLE
+        medicinskaKoristLV.adapter = medicinskaKoristAdapter
+
+        val klimatskiTipAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_multiple_choice, klimatskiTipValues)
+        klimatskiTipLV.choiceMode = ListView.CHOICE_MODE_MULTIPLE
+        klimatskiTipLV.adapter = klimatskiTipAdapter
+
+        val zemljisniTipAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_multiple_choice, zemljisniTipValues)
+        zemljisniTipLV.choiceMode = ListView.CHOICE_MODE_MULTIPLE
+        zemljisniTipLV.adapter = zemljisniTipAdapter
     }
 
     private fun validateAndAddPlant(): Boolean {
