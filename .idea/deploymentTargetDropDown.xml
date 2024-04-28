@@ -2,25 +2,6 @@
 <project version="4">
   <component name="deploymentTargetDropDown">
     <value>
-      <entry key="Kamera()">
-        <State>
-          <runningDeviceTargetSelectedWithDropDown>
-            <Target>
-              <type value="RUNNING_DEVICE_TARGET" />
-              <deviceKey>
-                <Key>
-                  <type value="VIRTUAL_DEVICE_PATH" />
-                  <value value="C:\Users\DT User3\.android\avd\Pixel_7_Pro_API_30.avd" />
-                </Key>
-              </deviceKey>
-            </Target>
-          </runningDeviceTargetSelectedWithDropDown>
-          <timeTargetWasSelectedWithDropDown value="2024-04-28T18:40:39.008434500Z" />
-        </State>
-      </entry>
-      <entry key="Test1()">
-        <State />
-      </entry>
       <entry key="Test2()">
         <State>
           <runningDeviceTargetSelectedWithDropDown>
@@ -44,16 +25,35 @@
               <type value="RUNNING_DEVICE_TARGET" />
               <deviceKey>
                 <Key>
+                  <type value="SERIAL_NUMBER" />
+                  <value value="adb-RF8W10FDLJN-5StWTu._adb-tls-connect._tcp" />
+                </Key>
+              </deviceKey>
+            </Target>
+          </runningDeviceTargetSelectedWithDropDown>
+          <timeTargetWasSelectedWithDropDown value="2024-04-28T20:43:49.705857600Z" />
+        </State>
+      </entry>
+      <entry key="app">
+        <State>
+          <targetSelectedWithDropDown>
+            <Target>
+              <type value="QUICK_BOOT_TARGET" />
+              <deviceKey>
+                <Key>
                   <type value="VIRTUAL_DEVICE_PATH" />
                   <value value="C:\Users\DT User3\.android\avd\Pixel_7_Pro_API_30.avd" />
                 </Key>
               </deviceKey>
             </Target>
-          </runningDeviceTargetSelectedWithDropDown>
-          <timeTargetWasSelectedWithDropDown value="2024-04-28T19:16:06.858771100Z" />
+          </targetSelectedWithDropDown>
+          <timeTargetWasSelectedWithDropDown value="2024-04-28T21:51:27.576819100Z" />
         </State>
       </entry>
-      <entry key="app">
+      <entry key="test12()">
+        <State />
+      </entry>
+      <entry key="test13()">
         <State>
           <runningDeviceTargetSelectedWithDropDown>
             <Target>
@@ -66,10 +66,10 @@
               </deviceKey>
             </Target>
           </runningDeviceTargetSelectedWithDropDown>
-          <timeTargetWasSelectedWithDropDown value="2024-04-28T16:41:59.744408100Z" />
+          <timeTargetWasSelectedWithDropDown value="2024-04-28T21:50:49.102597400Z" />
         </State>
       </entry>
-      <entry key="validateNazivEditTextLength()">
+      <entry key="verifyProfilOkusaListViewBorder()">
         <State />
       </entry>
     </value>

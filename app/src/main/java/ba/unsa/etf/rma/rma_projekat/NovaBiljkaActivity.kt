@@ -29,13 +29,13 @@ class NovaBiljkaActivity : AppCompatActivity() {
     private lateinit var medicinskoUpozorenje :EditText
     private lateinit var jelo :EditText
     private lateinit var dodajBiljkuBtn:Button
-    private lateinit var pozicijaZaIzmjenu : String;
+    //private lateinit var pozicijaZaIzmjenu : String;
     private lateinit var uslikajBiljkuBtn: Button
     private lateinit var slikaIV: ImageView
     private lateinit var jelaList: ArrayList<String>
     private var trenutnoIzabranoJelo: Int = -1
     private lateinit var adapter: ArrayAdapter<String>
-    private var slikaBiljkeBitmap: Bitmap? = null
+    //private var slikaBiljkeBitmap: Bitmap? = null
     private lateinit var dodajJeloBtn : Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -196,18 +196,18 @@ class NovaBiljkaActivity : AppCompatActivity() {
     }
         fun validirajUnosKorisnika(): Boolean {
 
-            var vrati: Boolean = true;
+            var ispravno = true;
             if (naziv.text.length < 2 || naziv.text.length > 20) {
                 naziv.setError("Duzina texta mora biti izmedju 2 i 20!")
-                vrati = false;
+                ispravno = false
             }
             if (porodica.text.length < 2 || porodica.text.length > 20) {
                 porodica.setError("Duzina texta mora biti izmedju 2 i 20!")
-                vrati = false;
+                ispravno = false
             }
             if (medicinskoUpozorenje.text.length < 2 || medicinskoUpozorenje.text.length > 20) {
                 medicinskoUpozorenje.setError("Duzina texta mora biti izmedju 2 i 20!")
-                vrati = false;
+                ispravno = false
             }
             if (medicinskaKorist.checkedItemCount < 1) {
                 Toast.makeText(
@@ -215,44 +215,30 @@ class NovaBiljkaActivity : AppCompatActivity() {
                     "Morate izbrati makar jednu medicinsku korist",
                     Toast.LENGTH_SHORT
                 ).show()
-                vrati = false;
+                medicinskaKorist.setBackgroundResource(R.drawable.listview_error_border)
+                ispravno = false
             }
             if (klimatskiTip.checkedItemCount < 1) {
-                Toast.makeText(this, "Morate izbrati makar jedan klimatski tip", Toast.LENGTH_SHORT)
-                    .show()
-                vrati = false;
+                Toast.makeText(this, "Morate izbrati makar jedan klimatski tip", Toast.LENGTH_SHORT).show()
+                klimatskiTip.setBackgroundResource(R.drawable.listview_error_border)
+                ispravno = false
             }
             if (zemljisniTip.checkedItemCount < 1) {
-                Toast.makeText(
-                    this,
-                    "Morate izabrati makar jedan zemljisni tip",
-                    Toast.LENGTH_SHORT
-                ).show()
-                vrati = false;
+                Toast.makeText(this, "Morate izabrati makar jedan zemljisni tip", Toast.LENGTH_SHORT).show()
+                zemljisniTip.setBackgroundResource(R.drawable.listview_error_border)
+                ispravno = false
             }
             if (profilOkusa.checkedItemCount < 1) {
                 Toast.makeText(this, "Morate izabrati profil okusa", Toast.LENGTH_SHORT).show()
-                vrati = false;
+                profilOkusa.setBackgroundResource(R.drawable.listview_error_border)
+                ispravno = false
             }
             if (jela.count < 1) {
                 Toast.makeText(this, "Morate dodati makar jedno jelo", Toast.LENGTH_SHORT).show()
-                vrati = false;
+                ispravno = false
             }
-            return vrati;
+            return ispravno
         }
-    private fun verificirajJelo(text: String): Boolean {
-        if(jelo.text.length < 2 || jelo.text.length > 20) {
-            jelo.setError("Duzina texta mora biti izmedju 2 i 20!")
-            return false
-        }
-        for (i in 0 until jela.count) {
-            if (jela.adapter.getItem(i).toString().toUpperCase() == text.toUpperCase()) {
-                jelo.setError("Jelo vec postoji!")
-                return false
-            }
-        }
-        return true;
-    }
     private fun populateListViews() {
         val medicinskaKoristValues = MedicinskaKorist.entries.map { it.name }
         val klimatskiTipValues = KlimatskiTip.entries.map { it.name }

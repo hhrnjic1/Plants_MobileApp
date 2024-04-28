@@ -1,7 +1,14 @@
 package ba.unsa.etf.rma.rma_projekat
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
+import android.graphics.drawable.Drawable
+import android.graphics.drawable.GradientDrawable
+import android.service.autofill.Validators.not
 import android.view.View
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.ListView
+import androidx.core.content.ContextCompat
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.UiController
 import androidx.test.espresso.ViewAction
@@ -10,13 +17,19 @@ import androidx.test.espresso.action.ViewActions.closeSoftKeyboard
 import androidx.test.espresso.action.ViewActions.replaceText
 import androidx.test.espresso.action.ViewActions.scrollTo
 import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.matcher.RootMatchers.withDecorView
 import androidx.test.espresso.matcher.ViewMatchers
+import androidx.test.espresso.matcher.ViewMatchers.hasBackground
 import androidx.test.espresso.matcher.ViewMatchers.hasErrorText
 import androidx.test.espresso.matcher.ViewMatchers.isAssignableFrom
 import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.espresso.matcher.ViewMatchers.withId
+import androidx.test.espresso.matcher.ViewMatchers.withText
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import junit.framework.TestCase.assertEquals
+import junit.framework.TestCase.assertNotNull
+import junit.framework.TestCase.assertTrue
 
 import org.hamcrest.Matcher
 import org.junit.Rule
@@ -135,7 +148,7 @@ class TestoviSpirala2 {
         onView(withId(R.id.dodajJeloBtn)).perform(click())
         onView(withId(R.id.jelaLV)).check(matches(ViewMatchers.hasChildCount(1)))
     }
-
+    //test12 Mora se prvo enable permisija za koristenje kamere u aplikaciji
     @Test
     fun test12() {
         onView(withId(R.id.uslikajBiljkuBtn)).perform(scrollTo(),click())
