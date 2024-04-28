@@ -6,5 +6,11 @@ enum class KlimatskiTip(val opis: String) {
     SUBTROPSKA("Subtropska klima - blage zime i topla do vruća ljeta"),
     UMJERENA("Umjerena klima - topla ljeta i hladne zime"),
     SUHA("Sušna klima - niske padavine i visoke temperature tokom cijele godine"),
-    PLANINSKA("Planinska klima - hladne temperature i kratke sezone rasta"),
+    PLANINSKA("Planinska klima - hladne temperature i kratke sezone rasta"),;
+
+    companion object {
+        fun Opis(selectedItem: String): KlimatskiTip? {
+            return entries.find {it.name == selectedItem  }
+        }
+    }
 }

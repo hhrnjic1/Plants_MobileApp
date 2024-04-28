@@ -3,11 +3,13 @@ package ba.unsa.etf.rma.rma_projekat
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.Spinner
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -63,9 +65,22 @@ class MainActivity : AppCompatActivity() {
         novaBiljkaBtn = findViewById(R.id.novaBiljkaBtn)
         novaBiljkaBtn.setOnClickListener{
             val intent = Intent(this, NovaBiljkaActivity::class.java)
+            intent.putExtra("Listabiljaka", sveBiljkeList)
             startActivity(intent)
         }
 
+        val intentVracanja = intent
+        var vracenaLista: ArrayList<Biljka>? = intentVracanja.getSerializableExtra("UpdatanaLista") as? ArrayList<Biljka>
+
+        if(vracenaLista != null){
+            sveBiljkeList.clear()
+            sveBiljkeList.addAll(vracenaLista)
+            napuniListu(vracenaLista)
+            currentAdapter = MedicalAdapter(filtriraneBiljkeList)
+            currentAdapter = CookingAdapter(filtriraneBiljkeList)
+            currentAdapter = BotanicAdapter(filtriraneBiljkeList)
+            setAdapterBasedOnSpinnerPosition(0)
+        }
     }
 
     private fun setAdapterBasedOnSpinnerPosition(position: Int){

@@ -7,4 +7,10 @@ enum class Zemljiste(val naziv: String) {
     CRNICA("Crnica"),
     SLJUNOVITO("Šljunovito zemljište"),
     KRECNJACKO("Krečnjačko zemljište");
+
+    companion object {
+        fun Opis(selectedItem: String): Zemljiste? {
+            return Zemljiste.entries.find {it.name == selectedItem  }
+        }
+    }
 }

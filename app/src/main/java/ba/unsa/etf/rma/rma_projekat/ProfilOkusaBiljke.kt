@@ -1,5 +1,7 @@
 package ba.unsa.etf.rma.rma_projekat
 
+import android.util.Log
+
 enum class ProfilOkusaBiljke(val opis: String) {
     MENTA("Mentol - osvježavajući, hladan ukus"),
     CITRUSNI("Citrusni - osvježavajući, aromatičan"),
@@ -8,5 +10,11 @@ enum class ProfilOkusaBiljke(val opis: String) {
     LJUTO("Ljuto ili papreno"),
     KORIJENASTO("Korenast - drvenast i gorak ukus"),
     AROMATICNO("Začinski - topli i aromatičan ukus"),
-    GORKO("Gorak okus"),
+    GORKO("Gorak okus");
+
+    companion object {
+        fun Opis(selectedItem: String): ProfilOkusaBiljke? {
+            return entries.find {it.name == selectedItem  }
+        }
+    }
 }

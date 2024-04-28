@@ -5,6 +5,7 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
@@ -37,14 +38,24 @@ class NovaBiljkaActivity : AppCompatActivity() {
     private lateinit var adapter: ArrayAdapter<String>
     private var slikaBiljkeBitmap: Bitmap? = null
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.nova_biljka_activity)
 
+        val intentListaBiljaka = intent
+        val listaBiljaka: ArrayList<Biljka>?  = intentListaBiljaka.getSerializableExtra("Listabiljaka")as? ArrayList<Biljka>
+        /*listaBiljaka?.get(0)?.naziv?.let { Log.d("Moja beba", it) }
+        if (listaBiljaka != null) {
+            Log.d("ok", listaBiljaka.size.toString())
+        }else{
+            Log.d("Amna","Amna")
+        }*/
         initUI()
-        setupListeners()
+        if (listaBiljaka != null) {
+            setupListeners(listaBiljaka)
+        }
         populateListViews()
-
 
         adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, jelaList)
         jelaLV.adapter = adapter
@@ -73,7 +84,7 @@ class NovaBiljkaActivity : AppCompatActivity() {
         slikaIV = findViewById(R.id.slikaIV)
     }
 
-    private fun setupListeners() {
+    private fun setupListeners(listaBiljaka :ArrayList<Biljka>) {
         dodajJeloBtn.setOnClickListener {
             val arrayAdapter = jelaLV.adapter as ArrayAdapter<String>
             val jelo = jeloET.text.toString().trim()
@@ -131,12 +142,64 @@ class NovaBiljkaActivity : AppCompatActivity() {
                 isAnyItemSelected(klimatskiTipLV) &&
                 isAnyItemSelected(zemljisniTipLV) &&
                 jelaList.isNotEmpty() &&
-                isAnyItemSelected(profilOkusaLV) &&
-                slikaBiljkeBitmap != null) {
+                isAnyItemSelected(profilOkusaLV)) {
 
-                // Svi uslovi su ispunjeni, dodaj biljku
+                val klimatskiTipovi = mutableListOf<KlimatskiTip>()
+                val medicinskeKoristi = mutableListOf<MedicinskaKorist>()
+                val zemljisniTipovi = mutableListOf<Zemljiste>()
+                val izabranaJela = mutableListOf<String>()
+                lateinit var izabraniOkus: ProfilOkusaBiljke;
 
-
+                var indexi = klimatskiTipLV.checkedItemPositions
+                for (i in 0 until indexi.size()) {
+                    val position = indexi.keyAt(i)
+                    if (indexi.valueAt(i)) {
+                        val selectedItem = klimatskiTipLV.adapter.getItem(position) as String
+                        KlimatskiTip.Opis(selectedItem)?.let { it1 -> klimatskiTipovi.add(it1) }
+                    }
+                }
+                indexi = medicinskaKoristLV.checkedItemPositions
+                for (i in 0 until indexi.size()) {
+                    val position = indexi.keyAt(i)
+                    if (indexi.valueAt(i)) {
+                        val selectedItem = medicinskaKoristLV.adapter.getItem(position) as String
+                        MedicinskaKorist.Opis(selectedItem)?.let { it1 -> medicinskeKoristi.add(it1) }
+                    }
+                }
+               indexi = profilOkusaLV.checkedItemPositions
+                for (i in 0 until indexi.size()) {
+                    val position = indexi.keyAt(i)
+                    if (indexi.valueAt(i)) {
+                        val selectedItem = profilOkusaLV.adapter.getItem(position) as String
+                        selectedItem.trim()
+                        izabraniOkus = ProfilOkusaBiljke.Opis(selectedItem)!!
+                    }
+                }
+                indexi = zemljisniTipLV.checkedItemPositions
+                for (i in 0 until indexi.size()) {
+                    val position = indexi.keyAt(i)
+                    if (indexi.valueAt(i)) {
+                        val selectedItem = zemljisniTipLV.adapter.getItem(position) as String
+                        Zemljiste.Opis(selectedItem)?.let { it1 -> zemljisniTipovi.add(it1) }
+                    }
+                }
+                for (i in 0 until jelaLV.count) {
+                    val item = jelaLV.getItemAtPosition(i)
+                    izabranaJela.add(item.toString())
+                }
+                listaBiljaka.add(Biljka(
+                    nazivET.text.toString(),
+                    porodicaET.text.toString(),
+                    medicinskoUpozorenjeET.text.toString(),
+                    medicinskeKoristi,
+                    izabraniOkus,
+                    izabranaJela,
+                    klimatskiTipovi,
+                    zemljisniTipovi
+                ))
+                val intentZaVracanje = Intent(this, MainActivity::class.java)
+                intentZaVracanje.putExtra("UpdatanaLista", listaBiljaka)
+                startActivity(intentZaVracanje)
 
             } else {
                 if(!validateEditTextLength(nazivET, 3, 19)){
@@ -175,10 +238,6 @@ class NovaBiljkaActivity : AppCompatActivity() {
                 }else{
                     profilOkusaLV.setBackgroundResource(0)
                 }
-                if (slikaBiljkeBitmap == null) {
-                    // Korisnik nije uslikao biljku, prikažite grešku
-                    Toast.makeText(this, "Morate prvo uslikati biljku.", Toast.LENGTH_SHORT).show()
-                }
             }
         }
 
@@ -205,11 +264,6 @@ class NovaBiljkaActivity : AppCompatActivity() {
         val profilOkusaAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_single_choice, okusiList)
         profilOkusaLV.choiceMode = ListView.CHOICE_MODE_SINGLE
         profilOkusaLV.adapter = profilOkusaAdapter
-    }
-
-    private fun validateAndAddPlant(): Boolean {
-        // Implementirajte logiku za validaciju i dodavanje biljke
-        return true
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

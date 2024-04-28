@@ -1,6 +1,8 @@
 package ba.unsa.etf.rma.rma_projekat
 
-class Biljka {
+import java.io.Serializable
+
+class Biljka : Serializable{
     lateinit var naziv :String
     lateinit var porodica :String
     lateinit var medicinskoUpozorenje :String
