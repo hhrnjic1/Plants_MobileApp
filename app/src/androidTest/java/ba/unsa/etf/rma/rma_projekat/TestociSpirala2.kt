@@ -13,6 +13,7 @@ import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.espresso.matcher.ViewMatchers.hasErrorText
 import androidx.test.espresso.matcher.ViewMatchers.isAssignableFrom
+import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -133,6 +134,13 @@ class TestoviSpirala2 {
         onView(withId(R.id.dodajJeloBtn)).perform(scrollTo())
         onView(withId(R.id.dodajJeloBtn)).perform(click())
         onView(withId(R.id.jelaLV)).check(matches(ViewMatchers.hasChildCount(1)))
+    }
+
+    @Test
+    fun test12() {
+        onView(withId(R.id.uslikajBiljkuBtn)).perform(scrollTo(),click())
+        onView(withId(R.id.slikaIV)).perform(scrollTo())
+        onView(withId(R.id.slikaIV)).check(matches(isDisplayed()))
     }
 
 }
