@@ -42,6 +42,7 @@
             android:id="@+id/medicinskaKoristLV"
             android:layout_width="match_parent"
             android:layout_height="192dp"
+            android:nestedScrollingEnabled="true"
             android:choiceMode="multipleChoice" />
 
         <View
@@ -53,6 +54,7 @@
             android:id="@+id/klimatskiTipLV"
             android:layout_width="match_parent"
             android:layout_height="192dp"
+            android:nestedScrollingEnabled="true"
             android:choiceMode="multipleChoice" />
 
         <View
@@ -64,6 +66,7 @@
             android:id="@+id/zemljisniTipLV"
             android:layout_width="match_parent"
             android:layout_height="192dp"
+            android:nestedScrollingEnabled="true"
             android:choiceMode="multipleChoice" />
 
         <View
@@ -75,6 +78,7 @@
             android:id="@+id/profilOkusaLV"
             android:layout_width="match_parent"
             android:layout_height="192dp"
+            android:nestedScrollingEnabled="true"
             android:choiceMode="singleChoice" />
 
         <View
@@ -85,6 +89,7 @@
         <ListView
             android:id="@+id/jelaLV"
             android:layout_width="match_parent"
+            android:nestedScrollingEnabled="true"
             android:layout_height="192dp" />
 
         <View
