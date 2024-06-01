@@ -6,6 +6,8 @@ data class Links(
     @SerializedName("self") val self: String,
     @SerializedName("first") val first: String,
     @SerializedName("last") val last: String,
-    @SerializedName("next") val next: String
+    @SerializedName("next") val next: String,
+    @SerializedName("plant") val plant: String,
+    @SerializedName("genus") val genus: String
 )
 

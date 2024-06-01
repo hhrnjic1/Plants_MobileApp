@@ -9,6 +9,8 @@ import java.net.URL
 class TrefleDAO {
     private fun getImage(plant : Biljka) : Bitmap{
         val bitmap : Bitmap = TODO()
+
+
         return bitmap
     }
 }
