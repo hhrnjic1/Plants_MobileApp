@@ -7,6 +7,10 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 
 class CookingAdapter(private var biljke :ArrayList<Biljka>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -26,9 +30,11 @@ class CookingAdapter(private var biljke :ArrayList<Biljka>) : RecyclerView.Adapt
         viewHolderCooking.biljkaJelo2.text = jela.getOrNull(1)?.toString() ?: ""
         viewHolderCooking.biljkaJelo3.text = jela.getOrNull(2)?.toString() ?: ""
 
-        val context: Context = viewHolderCooking.biljkaImage.context
-        var id: Int = context.resources.getIdentifier("default_picture", "drawable", context.packageName)
-        viewHolderCooking.biljkaImage.setImageResource(id)
+        val scope = CoroutineScope(Job() + Dispatchers.Main)
+        scope.launch{
+            var trefleDao : TrefleDAO = TrefleDAO(viewHolderCooking.biljkaImage.context)
+            viewHolderCooking.biljkaImage.setImageBitmap(trefleDao.getImage(biljke[position]))
+        }
     }
 
 

@@ -7,6 +7,10 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 
 class BotanicAdapter(private var biljke :ArrayList<Biljka>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -23,10 +27,11 @@ class BotanicAdapter(private var biljke :ArrayList<Biljka>) : RecyclerView.Adapt
         viewHolderBotanic.biljkaKlima.text = biljke[position].klimatskiTipovi[0].opis
         viewHolderBotanic.biljkaZemljiste.text = biljke[position].zemljisniTipovi[0].naziv
 
-        val context: Context = viewHolderBotanic.biljkaImage.context
-        var id: Int =
-            context.resources.getIdentifier("default_picture", "drawable", context.packageName)
-        viewHolderBotanic.biljkaImage.setImageResource(id)
+        val scope = CoroutineScope(Job() + Dispatchers.Main)
+        scope.launch{
+            var trefleDao : TrefleDAO = TrefleDAO(viewHolderBotanic.biljkaImage.context)
+            viewHolderBotanic.biljkaImage.setImageBitmap(trefleDao.getImage(biljke[position]))
+        }
     }
 
     inner class BotanicModViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

@@ -39,11 +39,6 @@ class MedicalAdapter(private var biljke: ArrayList<Biljka>) :RecyclerView.Adapte
             viewHolderMedical.biljkaImage.setImageBitmap(trefleDao.getImage(biljke[position]))
         }
 
-       /* val context: Context = viewHolderMedical.biljkaImage.context
-        var id: Int =
-            context.resources.getIdentifier("default_picture", "drawable", context.packageName)
-        viewHolderMedical.biljkaImage.setImageResource(id)*/
-
     }
 
     fun updateBiljke(biljke : ArrayList<Biljka>){
