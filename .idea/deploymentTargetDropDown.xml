@@ -19,20 +19,7 @@
         </State>
       </entry>
       <entry key="TestoviSpirala2">
-        <State>
-          <runningDeviceTargetSelectedWithDropDown>
-            <Target>
-              <type value="RUNNING_DEVICE_TARGET" />
-              <deviceKey>
-                <Key>
-                  <type value="SERIAL_NUMBER" />
-                  <value value="adb-RF8W10FDLJN-5StWTu._adb-tls-connect._tcp" />
-                </Key>
-              </deviceKey>
-            </Target>
-          </runningDeviceTargetSelectedWithDropDown>
-          <timeTargetWasSelectedWithDropDown value="2024-04-28T20:43:49.705857600Z" />
-        </State>
+        <State />
       </entry>
       <entry key="app">
         <State>
@@ -70,7 +57,20 @@
         </State>
       </entry>
       <entry key="verifyProfilOkusaListViewBorder()">
-        <State />
+        <State>
+          <runningDeviceTargetSelectedWithDropDown>
+            <Target>
+              <type value="RUNNING_DEVICE_TARGET" />
+              <deviceKey>
+                <Key>
+                  <type value="SERIAL_NUMBER" />
+                  <value value="adb-RF8W10FDLJN-5StWTu._adb-tls-connect._tcp" />
+                </Key>
+              </deviceKey>
+            </Target>
+          </runningDeviceTargetSelectedWithDropDown>
+          <timeTargetWasSelectedWithDropDown value="2024-04-28T21:55:47.374363700Z" />
+        </State>
       </entry>
     </value>
   </component>
