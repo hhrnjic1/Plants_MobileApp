@@ -26,7 +26,7 @@ fun getBiljke(): List<Biljka> {
             listOf(MedicinskaKorist.PODRSKAIMUNITETU, MedicinskaKorist.REGULACIJAPROBAVE),  ProfilOkusaBiljke.GORKO,listOf("Čaj od đumbira"),
             listOf(KlimatskiTip.UMJERENA),listOf(Zemljiste.CRNICA)),
 
-        Biljka("Majčina dušica (Thymus timijan)","Lamiaceae (usnate)","Majčina dušica može interagirati s određenim lijekovima koji sprječavaju zgrušavanje krvi i lijekovi za kontrolu krvnog tlaka",
+        Biljka("Majčina dušica (Thymus vulgaris)","Lamiaceae (usnate)","Majčina dušica može interagirati s određenim lijekovima koji sprječavaju zgrušavanje krvi i lijekovi za kontrolu krvnog tlaka",
             listOf(MedicinskaKorist.PROTUUPALNO, MedicinskaKorist.PODRSKAIMUNITETU),  ProfilOkusaBiljke.AROMATICNO,listOf("Čaj od majčine dušice"),
             listOf(KlimatskiTip.UMJERENA),listOf(Zemljiste.ILOVACA,Zemljiste.PJESKOVITO)),
 
@@ -38,7 +38,7 @@ fun getBiljke(): List<Biljka> {
             listOf(MedicinskaKorist.REGULACIJAPROBAVE),  ProfilOkusaBiljke.AROMATICNO,listOf("Čaj od cimeta", "Kolač"),
             listOf(KlimatskiTip.TROPSKA,KlimatskiTip.SUBTROPSKA),listOf(Zemljiste.CRNICA)),
 
-        Biljka("Jagoda (Fragaria)","Rosaceae (Ružovke)","Osobe s dijabetesom trebaju biti oprezne s konzumacijom jagoda zbog njihovog prirodnog šećera",
+        Biljka("Jagoda (Fragaria × ananassa)","Rosaceae (Ružovke)","Osobe s dijabetesom trebaju biti oprezne s konzumacijom jagoda zbog njihovog prirodnog šećera",
             listOf(MedicinskaKorist.PODRSKAIMUNITETU),  ProfilOkusaBiljke.SLATKI,listOf("Jogurt sa voćem", "Voćna salata", "Kolač"),
             listOf(KlimatskiTip.UMJERENA),listOf(Zemljiste.CRNICA))
     )
