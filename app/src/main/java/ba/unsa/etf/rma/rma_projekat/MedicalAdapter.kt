@@ -7,6 +7,10 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 
 class MedicalAdapter(private var biljke: ArrayList<Biljka>) :RecyclerView.Adapter<RecyclerView.ViewHolder>(){
 
@@ -29,12 +33,16 @@ class MedicalAdapter(private var biljke: ArrayList<Biljka>) :RecyclerView.Adapte
         viewHolderMedical.biljkaKorist3.text = koristi.getOrNull(2)?.opis ?: ""
 
 
+        val scope = CoroutineScope(Job() + Dispatchers.Main)
+        scope.launch{
+            var trefleDao : TrefleDAO = TrefleDAO(viewHolderMedical.biljkaImage.context)
+            viewHolderMedical.biljkaImage.setImageBitmap(trefleDao.getImage(biljke[position]))
+        }
 
-
-        val context: Context = viewHolderMedical.biljkaImage.context
+       /* val context: Context = viewHolderMedical.biljkaImage.context
         var id: Int =
             context.resources.getIdentifier("default_picture", "drawable", context.packageName)
-        viewHolderMedical.biljkaImage.setImageResource(id)
+        viewHolderMedical.biljkaImage.setImageResource(id)*/
 
     }
 
