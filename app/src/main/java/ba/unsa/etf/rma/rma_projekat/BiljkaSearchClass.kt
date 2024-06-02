@@ -19,6 +19,7 @@ data class BiljkaSearchClass(
     @SerializedName("genus") val genus: String,
     @SerializedName("family") val family: String,
     @SerializedName("links") val links: Links,
-    @SerializedName("edible") val edible: Boolean?
+    @SerializedName("edible") val edible: Boolean?,
+    @SerializedName("main_species") val main_species: MainSpecies
 )
 
