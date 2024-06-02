@@ -35,7 +35,8 @@ class TrefleDAO(val context: Context? = null) {
     }
     suspend fun fixData(plant : Biljka) : Biljka{
         return withContext(Dispatchers.IO){
-            var biljkaVrati = Biljka(
+            //Make new plant
+            var returnPlant = Biljka(
                 plant.naziv,
                 plant.porodica,
                 plant.medicinskoUpozorenje,
@@ -46,21 +47,22 @@ class TrefleDAO(val context: Context? = null) {
                 plant.zemljisniTipovi
             )
 
-            //first we take a scientific name from the pant
-            var imeBiljke = biljkaVrati.naziv
+            //Take a scientific name from the plant
+            var imeBiljke = returnPlant.naziv
             var scientificName = ""
             scientificName = extractContentInBrackets(imeBiljke)
 
-            //get family name and replace if needed
+            //Get family name and replace if needed
             var scientificResponse = ApiAdapter.retrofit.searchScientificName(api_key, scientificName)
             val scientificResponseBody = scientificResponse.body()
             var family_name = scientificResponseBody?.data?.get(0)?.family
-            if(biljkaVrati.porodica != family_name){
+            if(returnPlant.porodica != family_name){
                 if (family_name != null) {
-                    biljkaVrati.porodica = family_name
+                    returnPlant.porodica = family_name
                 }
             }
 
+            //Get plant id and do the search by ID, then check if it is edible
             val id = scientificResponseBody?.data?.get(0)?.id
             if (id != null) {
                 val idResponse = ApiAdapter.retrofit.searchById(id, api_key)
@@ -68,14 +70,24 @@ class TrefleDAO(val context: Context? = null) {
                 val edible = idResponseBody?.data?.main_species?.edible
                 if (edible == false) {
                     val subString = "NIJE JESTIVO"
-                    if (!biljkaVrati.medicinskoUpozorenje.contains(subString)) {
-                        biljkaVrati.medicinskoUpozorenje = biljkaVrati.medicinskoUpozorenje + " " + subString
-                        biljkaVrati.jela = emptyList()
+                    if (!returnPlant.medicinskoUpozorenje.contains(subString)) {
+                        returnPlant.medicinskoUpozorenje = returnPlant.medicinskoUpozorenje + " " + subString
+                        returnPlant.jela = emptyList()
                     }
                 }
+
+            //Checking if plant is toxic
+                val toxicity = idResponseBody?.data?.main_species?.specifications?.toxicity
+                if(toxicity != null){
+                    val subString = "TOKSIČNO"
+                    if (!returnPlant.medicinskoUpozorenje.contains(subString)) {
+                        returnPlant.medicinskoUpozorenje = returnPlant.medicinskoUpozorenje + " " + subString
+                    }
+                }
+
             }
 
-            return@withContext biljkaVrati
+            return@withContext returnPlant
         }
     }
 
