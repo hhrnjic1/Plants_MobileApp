@@ -1,6 +1,5 @@
 package ba.unsa.etf.rma.rma_projekat
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup

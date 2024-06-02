@@ -12,6 +12,10 @@ import android.widget.ImageView
 import android.widget.ListView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 
 
 class NovaBiljkaActivity : AppCompatActivity() {
@@ -67,8 +71,7 @@ class NovaBiljkaActivity : AppCompatActivity() {
         jela.adapter = adapter;
 
         val intentZaDodavanje = intent
-        val listaBiljaka: ArrayList<Biljka>? =
-            intentZaDodavanje.getSerializableExtra("Listabiljaka") as? ArrayList<Biljka>
+        val listaBiljaka: ArrayList<Biljka>? = intentZaDodavanje.getSerializableExtra("Listabiljaka") as? ArrayList<Biljka>
 
         uslikajBiljkuBtn.setOnClickListener {
             val intentSlike = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
@@ -124,6 +127,8 @@ class NovaBiljkaActivity : AppCompatActivity() {
             }
         }
         dodajBiljkuBtn.setOnClickListener {
+            val scope = CoroutineScope(Job() + Dispatchers.Main)
+            scope.launch{
             if (validirajUnosKorisnika()) {
                 val klimatskiTipovi = mutableListOf<KlimatskiTip>()
                 val medicinskeKoristi = mutableListOf<MedicinskaKorist>()
@@ -169,21 +174,25 @@ class NovaBiljkaActivity : AppCompatActivity() {
                     val item = jela.getItemAtPosition(i)
                     izabranaJela.add(item.toString())
                 }
-                listaBiljaka?.add(
-                    Biljka(
-                        naziv.text.toString(),
-                        porodica.text.toString(),
-                        medicinskoUpozorenje.text.toString(),
-                        medicinskeKoristi,
-                        izabraniOkus,
-                        izabranaJela,
-                        klimatskiTipovi,
-                        zemljisniTipovi
-                    )
+                val novaBiljka = Biljka(
+                    naziv.text.toString(),
+                    porodica.text.toString(),
+                    medicinskoUpozorenje.text.toString(),
+                    medicinskeKoristi,
+                    izabraniOkus,
+                    izabranaJela,
+                    klimatskiTipovi,
+                    zemljisniTipovi
                 )
-                val intentZaVracanje = Intent(this, MainActivity::class.java)
+
+                var trefleDao  = TrefleDAO()
+                var apiBiljka = trefleDao.fixData(novaBiljka)
+                listaBiljaka?.add(apiBiljka)
+
+                val intentZaVracanje = Intent(this@NovaBiljkaActivity, MainActivity::class.java)
                 intentZaVracanje.putExtra("UpdatanaLista", listaBiljaka)
                 startActivity(intentZaVracanje)
+                }
             }
         }
         uslikajBiljkuBtn.setOnClickListener {
