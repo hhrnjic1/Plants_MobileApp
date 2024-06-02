@@ -76,7 +76,7 @@ class TrefleDAO(val context: Context? = null) {
                     }
                 }
 
-            //Checking if plant is toxic
+            //Fixing if plant is toxic
                 val toxicity = idResponseBody?.data?.main_species?.specifications?.toxicity
                 if(toxicity != null){
                     val subString = "TOKSIČNO"
@@ -85,8 +85,31 @@ class TrefleDAO(val context: Context? = null) {
                     }
                 }
 
+            //Fixing soil_texture if needed
+                val soil_texture = idResponseBody?.data?.main_species?.growth?.soil_texture
+                var soilList : ArrayList<Zemljiste> = ArrayList()
+                if(soil_texture != null){
+                    if(soil_texture == 1 || soil_texture == 2){
+                        soilList.add(Zemljiste.GLINENO)
+                    }
+                    else if(soil_texture == 3 || soil_texture == 4){
+                        soilList.add(Zemljiste.PJESKOVITO)
+                    }
+                    else if(soil_texture == 5 || soil_texture == 6){
+                        soilList.add(Zemljiste.ILOVACA)
+                    }
+                    else if(soil_texture == 7 || soil_texture == 8){
+                        soilList.add(Zemljiste.CRNICA)
+                    }
+                    else if(soil_texture == 9){
+                        soilList.add(Zemljiste.SLJUNOVITO)
+                    }
+                    else if(soil_texture == 10){
+                        soilList.add(Zemljiste.KRECNJACKO)
+                    }
+                returnPlant.zemljisniTipovi = soilList
+                }
             }
-
             return@withContext returnPlant
         }
     }
