@@ -206,8 +206,8 @@ class NovaBiljkaActivity : AppCompatActivity() {
         fun validirajUnosKorisnika(): Boolean {
 
             var ispravno = true;
-            if (naziv.text.length < 2 || naziv.text.length > 20) {
-                naziv.setError("Duzina texta mora biti izmedju 2 i 20!")
+            if (naziv.text.length < 2 || naziv.text.length > 40) {
+                naziv.setError("Duzina texta mora biti izmedju 2 i 40!")
                 ispravno = false
             }
             if (porodica.text.length < 2 || porodica.text.length > 20) {

@@ -109,6 +109,39 @@ class TrefleDAO(val context: Context? = null) {
                     }
                 returnPlant.zemljisniTipovi = soilList
                 }
+
+            //Fixing climate type if needed
+                val light = idResponseBody?.data?.main_species?.growth?.light
+                val atmosperic_humidity = idResponseBody?.data?.main_species?.growth?.atmospheric_humidity
+                var change = false
+                var climateList = ArrayList<KlimatskiTip>()
+                if(light in 6..9 && atmosperic_humidity in 1..5){
+                    climateList.add(KlimatskiTip.SREDOZEMNA)
+                    change = true;
+                }
+                if(light in 8..10 && atmosperic_humidity in 7..10){
+                    climateList.add(KlimatskiTip.TROPSKA)
+                    change = true;
+                }
+                if(light in 6..9 && atmosperic_humidity in 5..8){
+                    climateList.add(KlimatskiTip.SUBTROPSKA)
+                    change = true;
+                }
+                if(light in 4..7 && atmosperic_humidity in 3..7){
+                    climateList.add(KlimatskiTip.UMJERENA)
+                    change = true;
+                }
+                if(light in 7..9 && atmosperic_humidity in 1..2){
+                    climateList.add(KlimatskiTip.SUHA)
+                    change = true;
+                }
+                if(light in 0..5 && atmosperic_humidity in 3..7){
+                    climateList.add(KlimatskiTip.PLANINSKA)
+                    change = true;
+                }
+                if(change){
+                    returnPlant.klimatskiTipovi = climateList
+                }
             }
             return@withContext returnPlant
         }
