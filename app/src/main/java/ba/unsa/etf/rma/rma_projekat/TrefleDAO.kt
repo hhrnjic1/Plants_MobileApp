@@ -146,8 +146,47 @@ class TrefleDAO(val context: Context? = null) {
             return@withContext returnPlant
         }
     }
-    suspend fun getPlantsWithFlower(folwer_color : String, substr : String){
+    suspend fun getPlantsWithFlower(flower_color : String, substr : String):List<Biljka>{
+        return withContext(Dispatchers.IO) {
+            var returnLista = ArrayList<Biljka>()
 
+            //Filtrating all the plants based on substring
+            val response = ApiAdapter.retrofit.searchByFloweColor(api_key,substr)
+            val responseBody = response.body()
+            val total = responseBody?.meta?.total
+
+            //Checking if every scientific name has substring in it and adding that plant id to list
+            var idList = ArrayList<Int>()
+            if(total != null){
+                for(i in 0..<total){
+                    val scientific_name = responseBody?.data?.get(i)?.scientificName
+                    if (scientific_name != null) {
+                        if(scientific_name.contains(substr)){
+                            val id = responseBody?.data?.get(i)?.id
+                            if(id != null){
+                                idList.add(id)
+                            }
+                        }
+                    }
+                }
+            }
+
+            //Check if plant flower contains flower_color and add that plant with data inside returnList
+            for (i in 0..<idList.size){
+                val responseID = ApiAdapter.retrofit.searchById(idList.get(i),api_key)
+                val responseBodyID = responseID.body()
+                val colors = responseBodyID?.data?.main_species?.flower?.color
+                if(colors != null){
+                    if(colors.contains(flower_color)){
+                        var commonName = responseBodyID?.data?.commonName
+                    }
+                }
+            }
+
+
+
+            return@withContext ArrayList<Biljka>()
+        }
     }
 
     private fun extractContentInBrackets(input: String): String {

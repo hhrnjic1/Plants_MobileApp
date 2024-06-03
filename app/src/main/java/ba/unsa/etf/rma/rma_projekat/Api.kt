@@ -11,4 +11,7 @@ interface Api {
 
     @GET("plants/{id}/")
     suspend fun searchById(@Path("id") id : Int, @Query("token") apiKey: String) : Response<GetBiljkaResponseID>
+
+    @GET("plants/search/")
+    suspend fun searchByFloweColor(@Query("token") apiKey: String, @Query("q") q : String) :Response<GetBiljkaResponse>
 }
