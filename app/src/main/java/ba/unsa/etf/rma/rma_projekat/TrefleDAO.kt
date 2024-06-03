@@ -146,6 +146,9 @@ class TrefleDAO(val context: Context? = null) {
             return@withContext returnPlant
         }
     }
+    suspend fun getPlantsWithFlower(folwer_color : String, substr : String){
+
+    }
 
     private fun extractContentInBrackets(input: String): String {
         val regex = Regex("\\(([^)]+)\\)")

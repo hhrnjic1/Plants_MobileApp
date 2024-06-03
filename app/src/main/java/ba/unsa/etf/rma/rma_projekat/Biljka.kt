@@ -3,19 +3,19 @@ package ba.unsa.etf.rma.rma_projekat
 import java.io.Serializable
 
 class Biljka : Serializable{
-    lateinit var naziv :String
-    lateinit var porodica :String
-    lateinit var medicinskoUpozorenje :String
-    lateinit var medicinskeKoristi :List<MedicinskaKorist>
-    lateinit var profilOkusa :ProfilOkusaBiljke
-    lateinit var jela :List<String>
-    lateinit var klimatskiTipovi :List<KlimatskiTip>
-    lateinit var zemljisniTipovi :List<Zemljiste>
+     var naziv :String
+     var porodica :String
+     var medicinskoUpozorenje :String
+     var medicinskeKoristi :List<MedicinskaKorist>
+     var profilOkusa :ProfilOkusaBiljke
+     var jela :List<String>
+     var klimatskiTipovi :List<KlimatskiTip>
+     var zemljisniTipovi :List<Zemljiste>
 
     constructor(
         naziv: String,
         porodica: String,
-        medicinksoUpozorenje: String,
+        medicinskoUpozorenje: String,
         medicinskeKoristi: List<MedicinskaKorist>,
         profilOkusa: ProfilOkusaBiljke,
         jela: List<String>,
@@ -24,7 +24,7 @@ class Biljka : Serializable{
     ) {
         this.naziv = naziv
         this.porodica = porodica
-        this.medicinskoUpozorenje = medicinksoUpozorenje
+        this.medicinskoUpozorenje = medicinskoUpozorenje
         this.medicinskeKoristi = medicinskeKoristi
         this.profilOkusa = profilOkusa
         this.jela = jela
