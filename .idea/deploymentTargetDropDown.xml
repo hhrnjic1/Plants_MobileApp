@@ -8,9 +8,6 @@
       <entry key="app">
         <State />
       </entry>
-      <entry key="test12()">
-        <State />
-      </entry>
       <entry key="test13()">
         <State>
           <runningDeviceTargetSelectedWithDropDown>

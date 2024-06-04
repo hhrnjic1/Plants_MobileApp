@@ -59,18 +59,18 @@ class TestS3 {
         softAssert.assertThat(fixed.klimatskiTipovi).withFailMessage("T2.3 - klimatskiTipovi should contain \"Planinska\"").contains(KlimatskiTip.PLANINSKA)
         softAssert.assertAll()
     }
-/*
+
     @Test
     fun getFlowerRosaPurple()= runBlocking {
-        var plants = TrefleDAO().getPlantswithFlowerColor("purple","rosa")
+        var plants = TrefleDAO().getPlantsWithFlowerColor("purple","rosa")
         assertTrue("T3.1 - should contain \"Rosa pendulina\"",plants.find { biljka -> biljka.naziv.contains("Rosa pendulina",ignoreCase = true) }!=null)
     }
 
     @Test
     fun getFlowerRampionBlue()= runBlocking {
-        var plants = TrefleDAO().getPlantswithFlowerColor("blue","rampion")
+        var plants = TrefleDAO().getPlantsWithFlowerColor("blue","rampion")
         assertTrue("T4.1 - should contain \"Phyteuma spicatum\"",plants.find { biljka -> biljka.naziv.contains("Phyteuma spicatum",ignoreCase = true) }!=null)
     }
 
- */
+
 }
