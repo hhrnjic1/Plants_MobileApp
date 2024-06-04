@@ -169,6 +169,7 @@ class TrefleDAO(val context: Context? = null) {
                             var plant = Biljka(name,"","", emptyList(), ProfilOkusaBiljke.SLATKI, emptyList(),
                                 emptyList(), emptyList()
                             )
+                            plant = fixData(plant)
                             returnLista.add(plant)
                         }
                     }

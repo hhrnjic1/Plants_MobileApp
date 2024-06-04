@@ -23,9 +23,16 @@ class BotanicAdapter(private var biljke :ArrayList<Biljka>) : RecyclerView.Adapt
         val viewHolderBotanic = holder as BotanicModViewHolder
         viewHolderBotanic.biljkaNaziv.text = biljke[position].naziv
         viewHolderBotanic.biljkaPorodica.text = biljke[position].porodica
-        viewHolderBotanic.biljkaKlima.text = biljke[position].klimatskiTipovi[0].opis
-        viewHolderBotanic.biljkaZemljiste.text = biljke[position].zemljisniTipovi[0].naziv
-
+        if (biljke[position].klimatskiTipovi.isNotEmpty()){
+            viewHolderBotanic.biljkaKlima.text = biljke[position].klimatskiTipovi[0].opis
+        }else{
+            viewHolderBotanic.biljkaKlima.text = ""
+        }
+        if (biljke[position].zemljisniTipovi.isNotEmpty()){
+            viewHolderBotanic.biljkaZemljiste.text = biljke[position].zemljisniTipovi[0].naziv
+        }else{
+            viewHolderBotanic.biljkaZemljiste.text = ""
+        }
         val scope = CoroutineScope(Job() + Dispatchers.Main)
         scope.launch{
             var trefleDao : TrefleDAO = TrefleDAO(viewHolderBotanic.biljkaImage.context)
