@@ -147,39 +147,27 @@ class TrefleDAO(val context: Context? = null) {
         }
     }
     suspend fun getPlantsWithFlowerColor(flower_color : String, substr : String):List<Biljka>{
-        return withContext(Dispatchers.IO) {
+        return withContext(Dispatchers.IO){
             var returnLista = ArrayList<Biljka>()
-
-            //Filtrating all the plants based on substring
-            val response = ApiAdapter.retrofit.searchByFloweColor(api_key,substr)
+            val response = ApiAdapter.retrofit.searchByFlowerColorNew(substr,flower_color,api_key)
             val responseBody = response.body()
             val dataSize = responseBody?.data?.size
 
-            //Check if plant flower contains flower_color and add that plant with data inside returnList
-            if (dataSize != null) {
-                for (i in 0..< dataSize){
-                    val responseID = ApiAdapter.retrofit.searchById(responseBody.data[i].id,api_key)
-                    val responseBodyID = responseID.body()
-                    val colors = responseBodyID?.data?.main_species?.flower?.color
-                    if(colors != null){
-                        if(colors.contains(flower_color)){
-                            var commonName = responseBodyID.data.commonName
-                            var scientific_name = responseBodyID.data.scientificName
-                            var name = commonName + "(" + scientific_name + ")"
-                            var plant = Biljka(name,"","", emptyList(), ProfilOkusaBiljke.SLATKI, emptyList(),
-                                emptyList(), emptyList()
-                            )
-                            plant = fixData(plant)
-                            returnLista.add(plant)
-                        }
-                    }
-
+            if(dataSize != null){
+                for(i in 0..<dataSize){
+                    var commonName = responseBody.data[i].commonName
+                    var scientific_name = responseBody.data[i].scientificName
+                    var name = commonName + "(" + scientific_name + ")"
+                    var plant = Biljka(name,"","", emptyList(), ProfilOkusaBiljke.SLATKI, emptyList(),
+                        emptyList(), emptyList()
+                    )
+                    plant = fixData(plant)
+                    returnLista.add(plant)
                 }
             }
             return@withContext returnLista
         }
     }
-
     private fun extractContentInBrackets(input: String): String {
         val regex = Regex("\\(([^)]+)\\)")
         val matchResult = regex.find(input)

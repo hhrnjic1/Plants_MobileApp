@@ -84,6 +84,7 @@ class MainActivity : AppCompatActivity() {
                             recyclerView.adapter!!.notifyDataSetChanged()
                         }
                     }
+
                 } else {
                     colorSpinner.visibility = View.GONE
                     substringEditText.visibility = View.GONE
@@ -98,7 +99,9 @@ class MainActivity : AppCompatActivity() {
         resetButton = findViewById(R.id.resetBtn)
         resetButton.setOnClickListener{
             napuniListu(sveBiljkeList)
+            setAdapterBasedOnSpinnerPosition(spinner.selectedItemPosition)
             recyclerView.adapter = currentAdapter
+            recyclerView.adapter!!.notifyDataSetChanged()
         }
 
         novaBiljkaBtn = findViewById(R.id.novaBiljkaBtn)
