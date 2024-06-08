@@ -18,18 +18,21 @@ class TrefleDAO(val context: Context? = null) {
                 scientificName = extractContentInBrackets(imeBiljke)
 
                 //then we get a image_url form api call
+                if(scientificName.isEmpty() || scientificName.isBlank()){
+                    return@withContext BitmapFactory.decodeResource(context?.resources, R.drawable.default_picture)
+                }
                 var response = ApiAdapter.retrofit.searchScientificName(api_key, scientificName)
                 val responseBody = response.body()
                 val imageUrl = responseBody?.data?.get(0)?.imageUrl
 
                 //set the defaulte picture if call is not responsive or incorrect
                 if (imageUrl != null && context != null) {
-                    Glide.with(context).asBitmap().load(imageUrl).submit().get()
+                    return@withContext Glide.with(context).asBitmap().load(imageUrl).submit().get()
                 }else {
-                    BitmapFactory.decodeResource(context?.resources, R.drawable.default_picture)
+                    return@withContext BitmapFactory.decodeResource(context?.resources, R.drawable.default_picture)
                 }
             }catch (e:Exception){
-                BitmapFactory.decodeResource(context?.resources, R.drawable.default_picture)
+                return@withContext BitmapFactory.decodeResource(context?.resources, R.drawable.default_picture)
             }
         }
     }
