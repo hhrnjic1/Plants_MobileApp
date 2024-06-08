@@ -186,7 +186,11 @@ class NovaBiljkaActivity : AppCompatActivity() {
                 )
 
                 var trefleDao  = TrefleDAO()
-                var apiBiljka = trefleDao.fixData(novaBiljka)
+                val scientific_name = extractContentInBrackets(novaBiljka.naziv)
+                var apiBiljka = novaBiljka
+                if(scientific_name.isNotEmpty() || scientific_name.isNotBlank()){
+                    apiBiljka = trefleDao.fixData(novaBiljka)
+                }
                 listaBiljaka?.add(apiBiljka)
 
                 val intentZaVracanje = Intent(this@NovaBiljkaActivity, MainActivity::class.java)
@@ -280,4 +284,9 @@ class NovaBiljkaActivity : AppCompatActivity() {
             prikazSlike.setImageBitmap(imageBitmap)
         }
     }
+}
+fun extractContentInBrackets(input: String): String {
+    val regex = Regex("\\(([^)]+)\\)")
+    val matchResult = regex.find(input)
+    return matchResult?.groups?.get(1)?.value ?: ""
 }
