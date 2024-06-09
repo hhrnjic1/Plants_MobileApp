@@ -1,8 +1,11 @@
 package ba.unsa.etf.rma.rma_projekat
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import java.io.Serializable
-
+@Entity(tableName = "biljka")
 class Biljka : Serializable{
+    @PrimaryKey(autoGenerate = true) val id: Int = 0
      var naziv :String
      var porodica :String
      var medicinskoUpozorenje :String
@@ -11,6 +14,7 @@ class Biljka : Serializable{
      var jela :List<String>
      var klimatskiTipovi :List<KlimatskiTip>
      var zemljisniTipovi :List<Zemljiste>
+     var onlineChecked: Boolean = false
 
     constructor(
         naziv: String,
