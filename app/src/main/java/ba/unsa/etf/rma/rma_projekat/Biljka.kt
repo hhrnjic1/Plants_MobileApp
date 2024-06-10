@@ -4,7 +4,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import java.io.Serializable
-@Entity(tableName = "biljka")
+@Entity(tableName = "Biljka")
 class Biljka : Serializable{
     @PrimaryKey(autoGenerate = true) val id: Int = 0
     @ColumnInfo(name = "naziv") var naziv :String

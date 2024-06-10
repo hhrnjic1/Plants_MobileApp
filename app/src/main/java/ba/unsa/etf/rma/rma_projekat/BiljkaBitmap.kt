@@ -8,7 +8,7 @@ import androidx.room.Index
 import androidx.room.PrimaryKey
 
 @Entity(
-    tableName = "biljka_bitmap",
+    tableName = "BiljkaBitmap",
     foreignKeys = [ForeignKey(
         entity = Biljka::class,
         parentColumns = arrayOf("id"),
