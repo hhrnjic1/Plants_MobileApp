@@ -10,18 +10,15 @@ interface BiljkaDAO {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun saveBiljka(biljka: Biljka): Boolean
 
-    @Query("UPDATE biljka SET onlineChecked = :status WHERE id = :biljkaId")
-    suspend fun updateBiljkaStatus(biljkaId: Int, status: Boolean): Int
+    @Query("UPDATE biljka SET onlineChecked = 1 WHERE id = (SELECT biljkaId FROM biljka_bitmap LIMIT 1)")
+    suspend fun fixOfflineBiljka(): Int
 
-    @Query("SELECT * FROM biljka WHERE onlineChecked = 1")
-    suspend fun getAllCheckedBiljke(): List<Biljka>
-
-    @Query("DELETE FROM biljka")
-    suspend fun clearData()
-
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun addImage(biljkaBitmap: BiljkaBitmap): Long
 
     @Query("SELECT * FROM biljka")
     suspend fun getAllBiljkas(): List<Biljka>
+
+    @Query("DELETE FROM biljka")
+    suspend fun clearData()
 }
