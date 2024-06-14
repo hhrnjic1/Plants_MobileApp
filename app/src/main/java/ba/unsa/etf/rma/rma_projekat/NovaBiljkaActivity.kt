@@ -73,6 +73,7 @@ class NovaBiljkaActivity : AppCompatActivity() {
         val intentZaDodavanje = intent
         val listaBiljaka: ArrayList<Biljka>? = intentZaDodavanje.getSerializableExtra("Listabiljaka") as? ArrayList<Biljka>
 
+        var baza = BiljkaDatabase.getDatabase(application).biljkaDao()
         uslikajBiljkuBtn.setOnClickListener {
             val intentSlike = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
             if (intentSlike.resolveActivity(packageManager) != null) {
@@ -174,7 +175,7 @@ class NovaBiljkaActivity : AppCompatActivity() {
                     val item = jela.getItemAtPosition(i)
                     izabranaJela.add(item.toString())
                 }
-                val novaBiljka = Biljka(
+                val novaBiljka = Biljka(0,
                     naziv.text.toString(),
                     porodica.text.toString(),
                     medicinskoUpozorenje.text.toString(),
@@ -184,7 +185,6 @@ class NovaBiljkaActivity : AppCompatActivity() {
                     klimatskiTipovi,
                     zemljisniTipovi
                 )
-
                 var trefleDao  = TrefleDAO()
                 val scientific_name = extractContentInBrackets(novaBiljka.naziv)
                 var apiBiljka = novaBiljka
@@ -192,7 +192,7 @@ class NovaBiljkaActivity : AppCompatActivity() {
                     apiBiljka = trefleDao.fixData(novaBiljka)
                 }
                 listaBiljaka?.add(apiBiljka)
-
+                baza.saveBiljka(apiBiljka)
                 val intentZaVracanje = Intent(this@NovaBiljkaActivity, MainActivity::class.java)
                 intentZaVracanje.putExtra("UpdatanaLista", listaBiljaka)
                 startActivity(intentZaVracanje)

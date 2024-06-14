@@ -39,7 +39,7 @@ class TrefleDAO(val context: Context? = null) {
     suspend fun fixData(plant : Biljka) : Biljka{
         return withContext(Dispatchers.IO){
             //Make new plant
-            var returnPlant = Biljka(
+            var returnPlant = Biljka(0,
                 plant.naziv,
                 plant.porodica,
                 plant.medicinskoUpozorenje,
@@ -161,7 +161,7 @@ class TrefleDAO(val context: Context? = null) {
                     var commonName = responseBody.data[i].commonName
                     var scientific_name = responseBody.data[i].scientificName
                     var name = commonName + "(" + scientific_name + ")"
-                    var plant = Biljka(name,"","", emptyList(), ProfilOkusaBiljke.SLATKI, emptyList(),
+                    var plant = Biljka(0,name,"","", emptyList(), ProfilOkusaBiljke.SLATKI, emptyList(),
                         emptyList(), emptyList()
                     )
                     plant = fixData(plant)
