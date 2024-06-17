@@ -41,13 +41,22 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        var baza = BiljkaDatabase.getDatabase(application).biljkaDao()
+        val scope = CoroutineScope(Job() + Dispatchers.Main)
+        scope.launch {
+            sveBiljke = baza.getAllBiljkas()
+            sveBiljkeList.addAll(sveBiljke)
+            napuniListu(sveBiljkeList)
+            recyclerView.adapter = currentAdapter
+            recyclerView.adapter!!.notifyDataSetChanged()
 
-        sveBiljkeList.addAll(sveBiljke)
+        }
         napuniListu(sveBiljkeList)
 
         currentAdapter = MedicalAdapter(filtriraneBiljkeList)
         recyclerView = findViewById(R.id.biljkeRV)
         recyclerView.adapter = currentAdapter
+        recyclerView.adapter!!.notifyDataSetChanged()
         recyclerView.layoutManager = LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false)
 
         colorSpinner = findViewById(R.id.bojaSPIN)
@@ -107,11 +116,11 @@ class MainActivity : AppCompatActivity() {
         novaBiljkaBtn = findViewById(R.id.novaBiljkaBtn)
         novaBiljkaBtn.setOnClickListener{
             val intent = Intent(this, NovaBiljkaActivity::class.java)
-            intent.putExtra("Listabiljaka", sveBiljkeList)
+            /*intent.putExtra("Listabiljaka", sveBiljkeList)*/
             startActivity(intent)
         }
 
-        val intentVracanja = intent
+        /*val intentVracanja = intent
         var vracenaLista: ArrayList<Biljka>? = intentVracanja.getSerializableExtra("UpdatanaLista") as? ArrayList<Biljka>
 
         if(vracenaLista != null){
@@ -122,7 +131,7 @@ class MainActivity : AppCompatActivity() {
             currentAdapter = CookingAdapter(filtriraneBiljkeList)
             currentAdapter = BotanicAdapter(filtriraneBiljkeList)
             setAdapterBasedOnSpinnerPosition(0)
-        }
+        }*/
     }
 
     private fun setAdapterBasedOnSpinnerPosition(position: Int){

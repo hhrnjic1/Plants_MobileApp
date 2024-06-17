@@ -55,5 +55,5 @@ interface BiljkaDAO {
         suspend fun insertImage(biljkaBit : BiljkaBitmap): Long
 
         @Query("SELECT bitmap FROM BiljkaBitmap WHERE idBiljke = :id")
-        suspend fun getBitmapById(id: Long) : Bitmap
+        suspend fun getBitmapById(id: Int) : Bitmap
 }

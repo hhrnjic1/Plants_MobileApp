@@ -11,6 +11,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
+
 class CookingAdapter(private var biljke :ArrayList<Biljka>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.cooking_mod,parent,false)
@@ -29,10 +30,18 @@ class CookingAdapter(private var biljke :ArrayList<Biljka>) : RecyclerView.Adapt
         viewHolderCooking.biljkaJelo2.text = jela.getOrNull(1)?.toString() ?: ""
         viewHolderCooking.biljkaJelo3.text = jela.getOrNull(2)?.toString() ?: ""
 
+        var baza = BiljkaDatabase.getDatabase(viewHolderCooking.biljkaImage.context).biljkaDao()
         val scope = CoroutineScope(Job() + Dispatchers.Main)
         scope.launch{
             var trefleDao : TrefleDAO = TrefleDAO(viewHolderCooking.biljkaImage.context)
-            viewHolderCooking.biljkaImage.setImageBitmap(trefleDao.getImage(biljke[position]))
+            var slika = baza.getBitmapById(biljke[position].id)
+            if(slika == null){
+                var image = trefleDao.getImage(biljke[position])
+                baza.addImage(biljke[position].id,image)
+                viewHolderCooking.biljkaImage.setImageBitmap(image)
+            }else{
+                viewHolderCooking.biljkaImage.setImageBitmap(slika)
+            }
         }
     }
 

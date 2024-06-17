@@ -31,11 +31,18 @@ class MedicalAdapter(private var biljke: ArrayList<Biljka>) :RecyclerView.Adapte
         viewHolderMedical.biljkaKorist2.text = koristi.getOrNull(1)?.opis ?: ""
         viewHolderMedical.biljkaKorist3.text = koristi.getOrNull(2)?.opis ?: ""
 
-
+        var baza = BiljkaDatabase.getDatabase(viewHolderMedical.biljkaImage.context).biljkaDao()
         val scope = CoroutineScope(Job() + Dispatchers.Main)
         scope.launch{
             var trefleDao : TrefleDAO = TrefleDAO(viewHolderMedical.biljkaImage.context)
-            viewHolderMedical.biljkaImage.setImageBitmap(trefleDao.getImage(biljke[position]))
+            var slika = baza.getBitmapById(biljke[position].id)
+            if(slika == null){
+                var image = trefleDao.getImage(biljke[position])
+                baza.addImage(biljke[position].id,image)
+                viewHolderMedical.biljkaImage.setImageBitmap(image)
+            }else{
+                viewHolderMedical.biljkaImage.setImageBitmap(slika)
+            }
         }
 
     }

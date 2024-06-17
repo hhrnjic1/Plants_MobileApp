@@ -33,10 +33,19 @@ class BotanicAdapter(private var biljke :ArrayList<Biljka>) : RecyclerView.Adapt
         }else{
             viewHolderBotanic.biljkaZemljiste.text = ""
         }
+
+        var baza = BiljkaDatabase.getDatabase(viewHolderBotanic.biljkaImage.context).biljkaDao()
         val scope = CoroutineScope(Job() + Dispatchers.Main)
         scope.launch{
             var trefleDao : TrefleDAO = TrefleDAO(viewHolderBotanic.biljkaImage.context)
-            viewHolderBotanic.biljkaImage.setImageBitmap(trefleDao.getImage(biljke[position]))
+            var slika = baza.getBitmapById(biljke[position].id)
+            if(slika == null){
+                var image = trefleDao.getImage(biljke[position])
+                baza.addImage(biljke[position].id,image)
+                viewHolderBotanic.biljkaImage.setImageBitmap(image)
+            }else{
+                viewHolderBotanic.biljkaImage.setImageBitmap(slika)
+            }
         }
     }
 

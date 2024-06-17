@@ -71,7 +71,7 @@ class NovaBiljkaActivity : AppCompatActivity() {
         jela.adapter = adapter;
 
         val intentZaDodavanje = intent
-        val listaBiljaka: ArrayList<Biljka>? = intentZaDodavanje.getSerializableExtra("Listabiljaka") as? ArrayList<Biljka>
+        /*val listaBiljaka: ArrayList<Biljka>? = intentZaDodavanje.getSerializableExtra("Listabiljaka") as? ArrayList<Biljka>*/
 
         var baza = BiljkaDatabase.getDatabase(application).biljkaDao()
         uslikajBiljkuBtn.setOnClickListener {
@@ -191,10 +191,10 @@ class NovaBiljkaActivity : AppCompatActivity() {
                 if(scientific_name.isNotEmpty() || scientific_name.isNotBlank()){
                     apiBiljka = trefleDao.fixData(novaBiljka)
                 }
-                listaBiljaka?.add(apiBiljka)
+                //listaBiljaka?.add(apiBiljka)
                 baza.saveBiljka(apiBiljka)
                 val intentZaVracanje = Intent(this@NovaBiljkaActivity, MainActivity::class.java)
-                intentZaVracanje.putExtra("UpdatanaLista", listaBiljaka)
+                /*intentZaVracanje.putExtra("UpdatanaLista", listaBiljaka)*/
                 startActivity(intentZaVracanje)
                 }
             }
